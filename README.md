@@ -5,7 +5,7 @@ Get information about a credit card number
 
 Provided a credit card, (including a partial), the function returns information about your card, for example:
 
- cardInfo("5105105105105100");
+	cardInfo("5105105105105100");
 
 Returns an object with the following properties:
 
