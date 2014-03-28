@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>QUnit Example</title>
+	<link rel="stylesheet" href="qunit/qunit.css">
+</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture"></div>
+	<script src="qunit/qunit.js"></script>
+	<script src="cardinfo.js"></script>
+<script>
+
+var testCards = [
+	{ type: "AX", number: "341111111111111" },
+	{ type: "AX", number: "378282246310005" },
+	{ type: "AX", number: "371449635398431" },
+	{ type: "AX", number: "378734493671000" },
+	{ type: "CB", number: "30569309025904" },
+	{ type: "DC", number: "38520000023237" },
+	{ type: "DS", number: "6011111111111117" },
+	{ type: "DS", number: "6011000990139424" },
+	{ type: "DS", number: "6011601160116611" },
+	{ type: "JC", number: "3530111333300000" },
+	{ type: "JC", number: "3566002020360505" },
+	{ type: "CA", number: "5431111111111111" },
+	{ type: "CA", number: "5555555555554444" },
+	{ type: "CA", number: "5105105105105100" },
+	{ type: "VI", number: "4111111111111111" },
+	{ type: "VI", number: "4012888888881881" },
+	{ type: "VI", number: "4222222222222" }
+];
+
+test( "Card types", function() {
+	for(i = 0; i < testCards.length; i += 1) {
+		var cc = testCards[i],
+			info = cardInfo(cc.number);
+		ok(cc.type == info.cardType, cc.type + " " + cc.number + " is correct type");
+	}
+});
+
+test( "Card numbers valid", function() {
+	for(i = 0; i < testCards.length; i += 1) {
+		var cc = testCards[i],
+			info = cardInfo(cc.number);
+		ok(info.valid == true, cc.type + " " + cc.number + " is a valid CC number");
+	}
+});
+
+test( "Valid card numbers with unusual characters", function() {
+	ok(cardInfo("4222-2222-2222-2").valid == true, "'4222-2222-2222-2' is a valid CC number");
+	ok(cardInfo("3782 8224 6310 005").valid == true, "'3782 8224 6310 005' is a valid CC number");
+	ok(cardInfo(" 5105-1051 0510-5100").valid == true, "' 5105-1051 0510-5100' is a valid CC number");
+});
+
+test( "Invalid card numbers", function() {
+	ok(cardInfo("Not a card number").valid == false, "'Not a card number' is not a valid CC number");
+	ok(cardInfo("x4222222222222").valid == false, "'x4222222222222' is not a valid CC number");
+});
+
+</script>
+</body>
+</html>
