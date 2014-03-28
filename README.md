@@ -18,5 +18,12 @@ Returns an object with the following properties:
 		"number":"5105105105105100",	// A trimmed and whitespaced-removed card number
 		"valid":true					// If the number provided was valid (allows whitespace and dashes - use the returned number for a "clean" version of the card)
 	}
+	
+Note: if you enter an invalid value, you will get an object like so:
+	
+	{
+		valid: false,
+		number: ""
+	}
 
 License: MIT http://www.opensource.org/licenses/mit-license.php
