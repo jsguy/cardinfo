@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CardInfo example</title>
+	<script src="jquery/jquery-1.11.0.js"></script>
+	<script src="../cardinfo.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<!-- We use JSON -->
+	<!--[if lt IE 9]>
+	    <script src="http://www.json.org/json2.js"></script>
+	<![endif]-->
+</head>
+<body>
+<div class="main">
+	<h1>Example: Show info about a card</h1>
+	<p>
+		This example shows information about a credit card. Click on the ones below to try it out:
+		<ul>
+			<li><a class="cardLink" href="javascript:void(0)">371449635398431</a></li>
+			<li><a class="cardLink" href="javascript:void(0)">5105105105105100</a></li>
+			<li><a class="cardLink" href="javascript:void(0)">4111111111111111</a></li>
+			<li><a class="cardLink" href="javascript:void(0)">41111</a></li>
+		</ul>
+		Note: jQuery is not required, though I've used it to setup the example.
+	</p>
+	<p>
+		You can also try a custom value, try entering "606" for example, to see what it will find...
+		<div class="row">
+			<input type="text" id="custom"/>
+		</div>
+		<div class="row">
+			<button id="go">Show info</button>
+		</div>
+	</p>
+	<div id="output"></div>
+</div>
+
+<script>
+	$(function(){
+		var showInfo = function(info) {
+			$('#output').html("<pre><code>" +JSON.stringify(info, undefined, 2)+ "</code></pre>");
+		};
+		$('.cardLink').click(function(e){
+			var $this = $(this);
+			showInfo(cardInfo($this.html()));
+			e.preventDefault();
+		});
+		$('#go').click(function(e){
+			showInfo(cardInfo($('#custom').val()));
+			e.preventDefault();
+		});
+	});
+
+
+
+</script>
+</body>
+</html>
