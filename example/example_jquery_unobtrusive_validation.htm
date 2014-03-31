@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CardInfo example</title>
+	<script src="jquery/jquery-1.11.0.js"></script>
+	<script src="jquery/jquery.validate.js"></script>
+	<script src="jquery/jquery.validate.unobtrusive.js"></script>
+	<script src="../cardinfo.js"></script>
+	<script src="../jquery.validate.creditcardadvanced.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div class="main">
+	<h1>Example: jQuery unobtrusive validation</h1>
+	<p>
+		This example shows how you can use the adaptor for jquery unobtrusive validation. Here are a few cards you can try:
+
+		<ul>
+			<li>371449635398431 (Amex)</li>
+			<li>5105105105105100 (Mastercard)</li>
+			<li>4111111111111111 (Visa)</li>
+		</ul>
+
+		Something like '41111' is not a valid credit card, but works on the default <a href="http://jqueryvalidation.org/creditcard-method/" target="_blank">jQuery validation</a> library.
+	</p>
+	<form>
+		<div class="row">
+			<label for="CardNumber">Credit card number</label>
+			<input autocomplete="off" data-val="true" data-val-creditcardadvanced="Please enter a valid credit card" id="CardNumber" name="CardNumber" type="text" value="" />
+			<span data-valmsg-replace="true" data-valmsg-for="CardNumber" class="field-validation-valid"></span>
+		</div>
+
+		<div class="row">
+			<label></label>
+			<button type="submit">Submit</button>
+		</div>
+
+	</form>
+</div>
+</body>
+</html>

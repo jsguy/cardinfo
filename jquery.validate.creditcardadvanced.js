@@ -35,8 +35,10 @@ if (jQuery && jQuery.validator) {
     jQuery.validator.addMethod("creditcardadvanced", function (value, element, param) {
         //	Grab the card information
         var card = cardInfo(value),
-            //  Need to use eval, as we pass in a function with a parameter
-            cardTypeFunc = eval("(" + param.cardtype + ")");
+            //  See if we have a function, or need to use eval if it's a string.
+            cardTypeFunc = $.isFunction(window[param.cardtype])?
+                window[param.cardtype]: 
+                eval("(" + param.cardtype + ")");
 
         //	Check if we have a card type function for comparing the card type
         if (jQuery.isFunction(cardTypeFunc)) {

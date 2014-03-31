@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CardInfo example</title>
+	<script src="jquery/jquery-1.11.0.js"></script>
+	<script src="jquery/jquery.validate.js"></script>
+	<script src="jquery/jquery.validate.unobtrusive.js"></script>
+	<script src="../cardinfo.js"></script>
+	<script src="../jquery.validate.creditcardadvanced.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div class="main">
+	<h1>Example: Auto select credit card type via unobtrusive validation</h1>
+	<p>
+		This example shows how you can auto-select a credit card type - we use a hidden field, and then set a classname to show the card type. Here are a few cards you can try:
+
+		<ul>
+			<li>371449635398431 (Amex)</li>
+			<li>5105105105105100 (Mastercard)</li>
+			<li>4111111111111111 (Visa)</li>
+		</ul>
+
+		Simply type in the card number, and blur the field, and it will show you the CC type it has detected.
+	</p>
+	<form>
+		<div class="row">
+			<label for="CardNumber">Credit card number</label>
+			<input autocomplete="off" data-val="true" data-val-creditcardadvanced="Please enter a valid credit card" data-val-creditcardadvanced-cardtype="checkCardType" id="CardNumber" name="CardNumber" type="text" value="" />
+			<span data-valmsg-replace="true" data-valmsg-for="CardNumber" class="field-validation-valid"></span>
+		</div>
+
+		<div class="row">
+			<label for="CardType">Credit card type</label>
+			<span id="cc"></span>
+			<span id="ccName"></span>
+		</div>
+
+		<div class="row">
+			<label></label>
+			<button type="submit">Submit</button>
+		</div>
+
+	</form>
+</div>
+
+<script>
+	//	Function to check the card type, and set it if not set yet.
+	var checkCardType = function(card){
+		$("#cc").removeClass();
+		$('#ccName').html("");
+		if(card.cardCode){
+			$("#cc").addClass('card').addClass(card.cardCode);
+			$('#ccName').html(card.cardName);
+		}
+		return card.cardCode;
+	};
+
+	//	Clear on startup, to avoid browser caching the value
+	$('#CardType').val("");
+</script>
+</body>
+</html>

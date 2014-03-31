@@ -1,0 +1,20 @@
+/* CSS Mini Reset */
+html, body, div, form, fieldset, legend, label {margin: 0; padding: 0; }
+table {border-collapse: collapse; border-spacing: 0; }
+th, td {text-align: left; vertical-align: top; }
+h1, h2, h3, h4, h5, h6, th, td, caption { font-weight:normal; }
+img { border: 0; }
+
+html, body { font-family: sans-serif; font-size: 0.9em; background-color: #f3f3f3 }
+button { border-radius: 4px; background: #0a0; color: #fff; padding: 1em 2em; border: 0; }
+label { width: 10em; display: inline-block; }
+.field-validation-valid {}
+.field-validation-error { display: block; color: #f00; padding-left: 10em; margin: 0.5em;}
+.row { margin-bottom: 0.5em; }
+.main {width: 60em; margin: 0 auto; text-align: left; padding: 2em; background-color: #fff }
+
+#cc { display: none; }
+#cc.card { background-image: url('img/credit-card-icon.png'); height: 24px; margin-bottom: -8px; width: 33px; display: inline-block; }
+#cc.VI { background-position: -33px -17px }
+#cc.CA { background-position: -153px -17px }
+#cc.AX { background-position: -284px -17px }
