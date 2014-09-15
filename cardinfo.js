@@ -26,7 +26,7 @@
 				{ cardName: "Visa", cardCode: "VI", lengths: "13,16", prefixes: "4" },
 				{ cardName: "American Express", cardCode: "AX", lengths: "15", prefixes: "34,37" },
 				{ cardName: "Carte Blanche", cardCode: "CB", lengths: "14", prefixes: "94,95,389" },
-				{ cardName: "China Union Pay", cardCode: "CU", lengths: "16-19", prefixes: "62" },
+				{ cardName: "China Union Pay", cardCode: "CU", lengths: "16,17,18,19", prefixes: "62" },
 				{ cardName: "Diners Club", cardCode: "DC", lengths: "14", prefixes: "304,305,36,38,60" },
 				{ cardName: "Discover", cardCode: "DS", lengths: "16", prefixes: "60110,60112,60113,60114,60119" },
 				{ cardName: "Electron", cardCode: "E", lengths: "16", prefixes: "450875,4844,4917,491880" },
