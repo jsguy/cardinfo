@@ -26,9 +26,11 @@
 
 	param is an optional object with the following attributes:
 
-	cardtype - 	a function to return the card type, see the "cards" variable below for valid card types. 
-				Use this function to enforce checking when the user has chosen a credit card type.
-                Note: the funciton is passed the card info object.
+	cardtype - 	a function to return the card type, see the "cards" variable below for 
+                valid card types. 
+				Use this function to enforce checking when the user has chosen a credit
+                card type.
+                Note: the function is passed the card info object.
 */
 if (jQuery && jQuery.validator) {
     //	Add our validator if we can

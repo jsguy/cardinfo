@@ -20,7 +20,7 @@
 */
 ;(function(context){
 	var cardInfo = function(value) {
-		//	Using cardCodes from http://developer.ean.com/general_info/Valid_Credit_Card_Types
+		//	Using cardCodes from http://developer.ean.com/general-info/valid-card-types/
 		var cards = [
 				{ cardName: "Mastercard", cardCode: "CA", lengths: "16", prefixes: "51,52,53,54,55" },
 				{ cardName: "Visa", cardCode: "VI", lengths: "13,16", prefixes: "4" },
@@ -36,11 +36,31 @@
 				{ cardName: "Delta", cardCode: "L", lengths: "16", prefixes: "4137,4462,45,46,48,49" },
 				{ cardName: "Carte Bleue", cardCode: "R", lengths: "13,16", prefixes: "4" },
 				{ cardName: "Switch", cardCode: "S", lengths: "16,18,19", prefixes: "4903,4911,4936,564182,63,6759" },
-				{ cardName: "Carte Si", cardCode: "T", lengths: "16", prefixes: "4" }
+				{ cardName: "Carte Si", cardCode: "T", lengths: "16", prefixes: "4" },
+				{ cardName: "BC Card", cardCode: "BC", lengths: "16", prefixes: "65730300-65735099,65410300-65415099,65420300-65425099,65430300-65432099,65432200-65435099,65560300-65565099,65580300-65585099,65590300-65595099" }
 			],
-			cardNo, cardexp, myCard, i, j, k, exp, tmp, checksum = 0, charsValid = false, checksumValid = false, lengthValid = false, prefixValid = false, prefix = [], lengthOk, lengths = [];
+			cardNo, cardexp, myCard, i, j, k, exp, tmp, checksum = 0, charsValid = false, checksumValid = false, lengthValid = false, prefixValid = false, prefix = [], lengthOk, lengths = [],
+			checkCardPrefix = function(cardNo, prefix){
+				var matches = false;
+				if(prefix.indexOf("-") !== -1) {
+					//	Check the range
+					var range = prefix.split("-"),
+						len = range[0].length,
+						cardPrefix = cardNo.substr(0, len);
+					if(cardPrefix >= range[0] && cardPrefix <= range[1]) {
+						matches = true;
+					}
+				} else {
+					//	Use basic regex
+					var exp = new RegExp("^" + prefix);
+					if (exp.test(cardNo)) {
+						matches = true;
+					}
+				}
+				return matches;
+			};
 
-		cardNo = value.replace(/[\s-]/g, ""); // remove spaces and dashes
+		cardNo = (""+value).replace(/[\s-]/g, ""); // remove spaces and dashes
 		cardexp = /^[0-9]{12,19}$/;
 		// has chars or wrong length
 		if (cardexp.exec(cardNo)) {
@@ -55,9 +75,9 @@
 		for (i = 0; i < cards.length; i+=1) {
 			prefix = cards[i].prefixes.split(",");
 			for (j = 0; j < prefix.length; j+=1) {
-				exp = new RegExp("^" + prefix[j]);
-				if (exp.test(cardNo)) {
-					//	Test the length - if value is longer than given length, must be different card
+				if(checkCardPrefix(cardNo, prefix[j])) {
+					//	Test the length - if value is longer than 
+					//	given length, must be different card
 					if(cards[i].lengths) {
 						lengths = cards[i].lengths.split(",");
 						for (k = 0; k < lengths.length; k+=1) {
@@ -111,13 +131,11 @@
 		if(myCard.prefixes) {
 			prefix = myCard.prefixes.split(",");
 			for (i = 0; i < prefix.length; i+=1) {
-				exp = new RegExp("^" + prefix[i]);
-				if (exp.test(cardNo)){
+				if(checkCardPrefix(cardNo, prefix[i])) {
 					prefixValid = true;
 				}
 			}
 		}
-
 
 		myCard.valid = !!(charsValid && checksumValid && prefixValid && lengthValid);
 
