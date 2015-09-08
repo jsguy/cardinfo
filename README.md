@@ -4,13 +4,13 @@ Get information about a credit card number
 
 Provided a credit card, (including a partial), the function returns information about your card, for example:
 
-'''javascript
+```javascript
 cardInfo("5105105105105100");
-'''
+```
 
 Returns an object with the following properties:
 
-'''javascript
+```javascript
 {
 	"cardType":"CA",				// Type code of the card
 	"cardName":"MasterCard",		// Name of the card
@@ -20,16 +20,16 @@ Returns an object with the following properties:
 	"number":"5105105105105100",	// A trimmed and whitespaced-removed card number
 	"valid":true					// If the number provided was valid (allows whitespace and dashes - use the returned number for a "clean" version of the card)
 }
-'''
+```
 
 Note: if you enter an invalid value, you will get an object like so:
 
-'''javascript
+```javascript
 {
 	valid: false,
 	number: ""
 }
-'''
+```
 
 ## Jquery validate 
 
