@@ -16,10 +16,16 @@
 			"valid":true					// If the number provided was valid (allows whitespace and dashes - use the returned number for a "clean" version of the card)
 		}
 
+	You can optionally pass in some options:
+
+		{
+			basic: true	// Skip card information validation, ie: prefix and strict length
+		}
+
 	License: MIT http://www.opensource.org/licenses/mit-license.php
 */
 ;(function(context){
-	var cardInfo = function(value) {
+	var cardInfo = function(value, options) {
 		//	Using cardCodes from http://developer.ean.com/general-info/valid-card-types/
 		var cards = [
 				{ cardName: "Mastercard", cardCode: "CA", lengths: "16", prefixes: "51,52,53,54,55" },
@@ -59,6 +65,8 @@
 				}
 				return matches;
 			};
+
+		options = options || {};
 
 		cardNo = (""+value).replace(/[\s-]/g, ""); // remove spaces and dashes
 		cardexp = /^[0-9]{12,19}$/;
@@ -119,25 +127,30 @@
 		}
 		checksumValid = (checksum % 10 === 0); // is it mod10
 
-		if(myCard.lengths) {
-			lengths = myCard.lengths.split(",");
-			for (j = 0; j < lengths.length; j+=1) {
-				if (cardNo.length == lengths[j]){
-					lengthValid = true;
+		if(options.basic) {
+			//	Do not strictly validate length and prefix
+			myCard.valid = !!(charsValid && checksumValid);
+		} else {
+			if(myCard.lengths) {
+				lengths = myCard.lengths.split(",");
+				for (j = 0; j < lengths.length; j+=1) {
+					if (cardNo.length == lengths[j]){
+						lengthValid = true;
+					}
 				}
 			}
-		}
 
-		if(myCard.prefixes) {
-			prefix = myCard.prefixes.split(",");
-			for (i = 0; i < prefix.length; i+=1) {
-				if(checkCardPrefix(cardNo, prefix[i])) {
-					prefixValid = true;
+			if(myCard.prefixes) {
+				prefix = myCard.prefixes.split(",");
+				for (i = 0; i < prefix.length; i+=1) {
+					if(checkCardPrefix(cardNo, prefix[i])) {
+						prefixValid = true;
+					}
 				}
 			}
+			myCard.valid = !!(charsValid && checksumValid && prefixValid && lengthValid);
 		}
 
-		myCard.valid = !!(charsValid && checksumValid && prefixValid && lengthValid);
 
 		return myCard? myCard: false;
 	};

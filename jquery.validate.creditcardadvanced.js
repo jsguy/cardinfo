@@ -31,12 +31,13 @@
 				Use this function to enforce checking when the user has chosen a credit
                 card type.
                 Note: the function is passed the card info object.
+    options - options that you can pass to card info, eg: { basic: true } will stil BIN validation
 */
 if (jQuery && jQuery.validator) {
     //	Add our validator if we can
     jQuery.validator.addMethod("creditcardadvanced", function (value, element, param) {
         //	Grab the card information
-        var card = cardInfo(value),
+        var card = cardInfo(value, param.options),
             //  See if we have a function, or need to use eval if it's a string.
             cardTypeFunc = $.isFunction(window[param.cardtype])?
                 window[param.cardtype]: 
