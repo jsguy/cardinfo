@@ -31,7 +31,7 @@
 				Use this function to enforce checking when the user has chosen a credit
                 card type.
                 Note: the function is passed the card info object.
-    options - options that you can pass to card info, eg: { basic: true } will stil BIN validation
+    options - options that you can pass to card info, eg: { strict: true } will use strict BIN and length check validation
 */
 if (jQuery && jQuery.validator) {
     //	Add our validator if we can
