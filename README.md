@@ -1,8 +1,7 @@
-# cardinfo
+# Cardinfo
 
-Get information about a credit card number
-
-Provided a credit card, (including a partial), the function returns information about your card, for example:
+Get information about a credit card number.
+Provided a credit card, (including partial numbers), the function returns information about your card, for example:
 
 ```javascript
 cardInfo("5105105105105100");
@@ -35,4 +34,11 @@ Note: if you enter an invalid value, you will get an object like so:
 
 See the `example` folder for how to integrate with jQuery validate
 
-License: MIT http://www.opensource.org/licenses/mit-license.php
+
+## Jquery automatic card type selection 
+
+See the `example` folder for how to integrate with jQuery to automatically select the card type
+
+## License
+
+MIT http://www.opensource.org/licenses/mit-license.php

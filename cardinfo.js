@@ -19,7 +19,7 @@
 	You can optionally pass in some options:
 
 		{
-			basic: true	// Skip card information validation, ie: prefix and strict length
+			strict: true	// Use card information for validation, ie: prefix and strict length checks
 		}
 
 	License: MIT http://www.opensource.org/licenses/mit-license.php
@@ -127,10 +127,7 @@
 		}
 		checksumValid = (checksum % 10 === 0); // is it mod10
 
-		if(options.basic) {
-			//	Do not strictly validate length and prefix
-			myCard.valid = !!(charsValid && checksumValid);
-		} else {
+		if(options.strict) {
 			if(myCard.lengths) {
 				lengths = myCard.lengths.split(",");
 				for (j = 0; j < lengths.length; j+=1) {
@@ -149,6 +146,9 @@
 				}
 			}
 			myCard.valid = !!(charsValid && checksumValid && prefixValid && lengthValid);
+		} else {
+			//	Do not strictly validate length and prefix
+			myCard.valid = !!(charsValid && checksumValid);
 		}
 
 

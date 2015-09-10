@@ -56,14 +56,14 @@ test( "Valid card numbers with unusual characters", function() {
 test( "Invalid card numbers", function() {
 	ok(cardInfo("Not a card number").valid == false, "'Not a card number' is not a valid CC number");
 	ok(cardInfo("x4222222222222").valid == false, "'x4222222222222' is not a valid CC number");
-	ok(cardInfo("6011601160116611").valid == false, "'6011601160116611' is not a valid CC number");
+	ok(cardInfo("6011601160116611").valid == true, "'6011601160116611' is considered a valid CC number");
 });
 
-test( "Bsic validation", function(){
-	var options = {basic: true};
-	ok(cardInfo("Not a card number", options).valid == false, "Basic validation 'Not a card number' is not a valid CC number");
-	ok(cardInfo("x4222222222222", options).valid == false, "Basic validation 'x4222222222222' is not a valid CC number");
-	ok(cardInfo("6011601160116611", options).valid == true, "Basic validation '6011601160116611' is considered a valid CC number");
+test( "Strict validation", function(){
+	var options = {strict: true};
+	ok(cardInfo("Not a card number", options).valid == false, "Strict validation 'Not a card number' is not a valid CC number");
+	ok(cardInfo("x4222222222222", options).valid == false, "Strict validation 'x4222222222222' is not a valid CC number");
+	ok(cardInfo("6011601160116611", options).valid == false, "Strict validation '6011601160116611' is not a valid CC number");
 });
 
 </script>
