@@ -39,8 +39,6 @@ if (jQuery && jQuery.validator) {
         //	Grab the card information
         var card = cardInfo(value, param.options),
             //  See if we have a function, or need to use eval if it's a string.
-            cardTypeFunc = $.isFunction(window[param.cardtype])?
-                window[param.cardtype]: 
                 eval("(" + param.cardtype + ")");
 
         //	Check if we have a card type function for comparing the card type
