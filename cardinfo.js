@@ -43,7 +43,7 @@
 				{ cardName: "Carte Bleue", cardCode: "R", lengths: "13,16", prefixes: "4" },
 				{ cardName: "Switch", cardCode: "S", lengths: "16,18,19", prefixes: "4903,4911,4936,564182,63,6759" },
 				{ cardName: "Carte Si", cardCode: "T", lengths: "16", prefixes: "4" },
-				{ cardName: "BC Card", cardCode: "BC", lengths: "16", prefixes: "65730300-65735099,65410300-65415099,65420300-65425099,65430300-65432099,65432200-65435099,65560300-65565099,65580300-65585099,65590300-65595099" }
+				{ cardName: "BC Card", cardCode: "BC", lengths: "16", prefixes: "605615,621000-621300,623300-623400,624300-624500,625000-625400,654000-654300,65430300-65432099,65432200-65435099,655600-656000,657000-657400,910000-910150,920000-920100,930000-935100,940000-948000,970000-970100" }
 			],
 			cardNo, cardexp, myCard, i, j, k, exp, tmp, checksum = 0, charsValid = false, checksumValid = false, lengthValid = false, prefixValid = false, prefix = [], lengthOk, lengths = [],
 			checkCardPrefix = function(cardNo, prefix){
